@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 /**
- * todo урок 3
+ * todo урок 4
  */
 Route::get('/about', function () {
     return view('about', ['message' => 'This is about page']);
