@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,20 +22,19 @@ Route::get('/', function () {
 /**
  * todo урок 4
  */
-Route::get('/about', function () {
-    return view('about', ['message' => 'This is about page']);
-});
+
 
 Route::get('/home', function () {
 
     $images = DB::table('images')->select('*')
         ->get()//вернет коллекцию
-        ->pluck('image')->all();//вернет массив с результатами из столбца image
+//        ->pluck('image')
+        ->all();//вернет массив с результатами из столбца image
 
 //    dd($images);
     return view('home', ['images' => $images]);
 });
-
+/***********Добавление изображения*/
 Route::get('/create', function () {
     return view('create');
 });
@@ -50,11 +50,42 @@ Route::post('/store', function (Request $request) {
     );
     return redirect('/home');
 });
+/******************************************/
+Route::get('/show/{id}', function ($id) {
+    $image = DB::table('images')->select('*')
+        ->where('id', $id)
+        ->first();
 
-Route::get('/show', function () {
-    return view('show');
+    return view('show', ['image' => $image->image]);
 });
 
-Route::get('/edit', function () {
-    return view('edit');
+/**EDIT Images*/
+Route::get('/edit/{id}', function ($id) {
+    $image = DB::table('images')->select('*')
+        ->where('id', $id)
+        ->first();
+
+    return view('edit', ['image' => $image]);
+});
+
+Route::post('/change/{id}', function (Request $request, $id) {
+
+    $file = DB::table('images')->select('image')
+        ->where('id', $id)
+        ->first();
+    Storage::delete($file->image);
+    $file = $request->file(['image'])->store('uploads');
+    DB::table('images')->where('id', $id)->update(['image'=> $file]);
+    return redirect('/home');
+});
+
+
+/************************Удаление изображения***********************/
+Route::get('/delete/{id}', function ($id) {
+    $file = DB::table('images')->select('*')
+        ->where('id',$id)
+        ->first();
+    Storage::delete($file->image);
+    DB::table('images')->delete($file->id);
+    return redirect('/home');
 });

@@ -5,8 +5,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <h1>Edit image</h1>
-                    <form action="" enctype="multipart/form-data">
+                    <div><img src="/{{$image->image}}" class="img-thumbnail" alt=""></div>
+                    <form action="/change/{{$image->id}}" enctype="multipart/form-data" method="post">
+                        {{@csrf_field()}}
                         <div class="form-control">
                             <input type="file" name="image">
                         </div>
