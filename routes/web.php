@@ -25,3 +25,15 @@ Route::get('/about', function () {
 Route::get('/hello', function () {
     return view('hello', ['name'=>'John']);
 });
+
+Route::get('/create', function () {
+    return view('create');
+});
+
+Route::get('/show', function () {
+    return view('show');
+});
+
+Route::get('/edit', function () {
+    return view('edit');
+});
