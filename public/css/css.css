@@ -1,9 +1,10 @@
-button.my-button {
+a.my-button {
     width: 100%;
     margin: 5px 0px;
+    display: block !important;
 }
 
-div.galery-item {
+div.gallery-item {
     margin: 10px 0px;
 }
 
