@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-5">
                 <h1>Addi image</h1>
-                <form action="/store" method="post" enctype="multipart/form-data">
+                <form action="/create" method="post" enctype="multipart/form-data">
                     {{@csrf_field()}}
                     <div class="form-control">
                         <input type="file" name="image">
