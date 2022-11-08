@@ -17,7 +17,6 @@ class ImageService
 //        ->pluck('image')
             ->all();//вернет массив с результатами из столбца image
 
-//    dd($images);
     }
 
     /**
@@ -38,7 +37,12 @@ class ImageService
             ->first();
     }
 
-    public function update($id, $image)
+    /**
+     * @param $id
+     * @param $image
+     * @return void
+     */
+    public function update($id, $image): void
     {
         $get_image = $this->getOneById($id);
         Storage::delete($get_image->image);

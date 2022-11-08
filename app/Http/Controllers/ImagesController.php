@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Validation\ValidationException;
 
 class ImagesController extends Controller
 {
@@ -39,10 +40,13 @@ class ImagesController extends Controller
     /**
      * @param Request $request
      * @return Redirector|Application|RedirectResponse
+     * @throws ValidationException
      */
     public function createImage(Request $request): Redirector|Application|RedirectResponse
     {
-//    dd(get_class_methods($file));// проверяем доступные методы
+        $this->validate($request, [
+            'image' => 'image'
+        ]);
         $image = $request->file('image');
         $this->images->add($image);
         return redirect('/');
@@ -62,8 +66,18 @@ class ImagesController extends Controller
         return view('edit', ['image' => $image]);
     }
 
-    public function editImage(Request $request, $id): Redirector|Application|RedirectResponse
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return Redirector|Application|RedirectResponse
+     * @throws ValidationException
+     */
+    public function editImage(Request $request, int $id): Redirector|Application|RedirectResponse
     {
+
+        $this->validate($request, [
+            'image' => 'image'
+        ]);
         $image = $request->file(['image']);
         $this->images->update($id, $image);
         return redirect('/');
