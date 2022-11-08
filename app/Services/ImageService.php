@@ -30,6 +30,10 @@ class ImageService
         );
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Query\Builder|object|null
+     */
     public function getOneById($id)
     {
         return DB::table('images')->select('*')

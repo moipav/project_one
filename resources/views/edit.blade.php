@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+    @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -8,6 +9,7 @@
             @endforeach
         </ul>
     </div>
+    @endif
         <div class="container">
             <div class="row">
                 <div class="col-md-5">

@@ -32,8 +32,9 @@ class ImagesController extends Controller
      * @return Factory|View|Application
      */
 
-    public function showCreateImagePage(): Factory|View|Application
+    public function showCreateImagePage(Request $request): Factory|View|Application
     {
+        dd($request);
         return view('create');
     }
 
@@ -74,7 +75,6 @@ class ImagesController extends Controller
      */
     public function editImage(Request $request, int $id): Redirector|Application|RedirectResponse
     {
-
         $this->validate($request, [
             'image' => 'image'
         ]);
