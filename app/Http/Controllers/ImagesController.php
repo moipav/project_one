@@ -34,7 +34,6 @@ class ImagesController extends Controller
 
     public function showCreateImagePage(Request $request): Factory|View|Application
     {
-        dd($request);
         return view('create');
     }
 
@@ -53,16 +52,25 @@ class ImagesController extends Controller
         return redirect('/');
     }
 
-    public function showOneImage($id): Factory|View|Application
+    public function showOneImage($id): Factory|View|Application|RedirectResponse
     {
         $image = $this->images->getOneById($id);
-
+        if($image === null){
+            return back();
+        }
         return view('show', ['image' => $image->image]);
     }
 
-    public function showEditImagePage($id): Factory|View|Application
+    /**
+     * @param int $id
+     * @return RedirectResponse|Application|Factory|View
+     */
+    public function showEditImagePage(int $id): RedirectResponse|Application|Factory|View
     {
         $image =$this->images->getOneById($id);
+        if($image === null){
+            return back();
+        }
 
         return view('edit', ['image' => $image]);
     }
@@ -83,7 +91,11 @@ class ImagesController extends Controller
         return redirect('/');
     }
 
-    public function deleteImage($id): Redirector|Application|RedirectResponse
+    /**
+     * @param int $id
+     * @return Redirector|Application|RedirectResponse
+     */
+    public function deleteImage(int $id): Redirector|Application|RedirectResponse
     {
         $this->images->deleteById($id);
         return redirect('/');
