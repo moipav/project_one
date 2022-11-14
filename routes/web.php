@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/show/{id}', [ImagesController::class, 'showOneImage']);
 
-        Route::get('/create', 'showCreateImagePage');
+        Route::get('/create', 'showCreateImagePage')->middleware(['admin']);
+
         Route::post('/create', 'createImage');
 
         Route::get('/edit/{id}', 'showEditImagePage');
@@ -30,4 +31,8 @@ use Illuminate\Support\Facades\Route;
     });
 }
 
+Route::get('/login', function () {
+    echo 'Страница входа';
+    echo "<a href='/'> назад</a>";
+})->name('login');
 
