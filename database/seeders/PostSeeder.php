@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Post;
 use Database\Factories\PostFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,5 +20,6 @@ class PostSeeder extends Seeder
         $post->count(50)
             ->create();
         //
+//        Post::factory()->count(10)->create();
     }
 }

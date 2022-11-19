@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends Factory<Post>
  */
 class PostFactory extends Factory
 {
@@ -16,11 +18,13 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $title = fake()->text(30);
+        $slug =  Str::of($title)->slug('-');
 
         return [
             //
-            'title' => fake()->text(30),
-            'slug' => fake()->slug,
+            'title' => $title,
+            'slug' => $slug,
             'content' => fake()->text,
             'date' => now(),
             'status' => rand(0,1),

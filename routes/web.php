@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 {
     Route::controller(ImagesController::class)->group(function () {
-        Route::get('/', [ImagesController::class, 'index']);
+        Route::get('/', 'index')->name('home');
 
-        Route::get('/show/{id}', [ImagesController::class, 'showOneImage']);
+        Route::get('/show/{id}', 'showOneImage');
 
-        Route::get('/create', 'showCreateImagePage')->middleware(['admin']);
+        Route::get('/create', 'showCreateImagePage')/*->middleware(['admin'])*/;//middleware ограничит доступ толькодля админов
 
         Route::post('/create', 'createImage');
 
