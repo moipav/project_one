@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImagesController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/delete/{id}', 'deleteImage');
     });
 }
+
+Route::get('/posts/all', [\App\Http\Controllers\PostController::class, 'getAllPosts']);
 
 Route::get('/login', function () {
     echo 'Страница входа';

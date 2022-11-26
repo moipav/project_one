@@ -29,6 +29,7 @@ class ImagesController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return Factory|View|Application
      */
 

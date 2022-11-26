@@ -10,4 +10,11 @@ class Post extends Model
     use HasFactory;
 
     protected $table = 'posts';
+
+    /**
+     * Первичный ключ таблицы БД
+     *
+     * @var string
+     */
+//    protected $primaryKey = 'id';
 }
