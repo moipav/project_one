@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,10 @@ use Illuminate\Support\Facades\Route;
     });
 }
 
-Route::get('/posts/all', [\App\Http\Controllers\PostController::class, 'getAllPosts']);
+Route::controller(PostController::class)->group(function () {
+    Route::get('/posts/all', 'getAllPosts')->name('show.all.posts');
+});
+
 
 Route::get('/login', function () {
     echo 'Страница входа';
