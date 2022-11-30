@@ -42,7 +42,7 @@ class PostController extends Controller
         $post->date = date('Y-m-d');
 
         $post->save();
-        //return redirect(route('all.posts'));
+        return redirect(route('all.posts'));
     }
     public function getAllPosts(): Factory|View|Application
     {
@@ -85,7 +85,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect('/posts');
+        return redirect(route('all.posts'));
 
     }
 

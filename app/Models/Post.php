@@ -21,5 +21,5 @@ class Post extends Model
      */
 //    protected $primaryKey = 'id';
 
-protected $fillable = ['title','slug',  'content', 'date', 'user_id'];
+//protected $fillable = ['title','slug',  'content', 'date', 'user_id'];
 }
