@@ -21,16 +21,19 @@
         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Images</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/about">about</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('all.posts')}}">view all posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{route('add.post')}}">add post</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/create">Add</a>
+                    <a class="nav-link active" href="/create">Add image</a>
                 </li>
 
             </ul>

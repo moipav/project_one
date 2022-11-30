@@ -4,7 +4,6 @@
     <div class="container" align="center">
         <h1 align="center">My gallery</h1>
         <div class="row">
-
             @foreach($images as $image)
             <div class="col-md-3 gallery-item">
                     <div><img src="{{$image->image}}" class="img-thumbnail" alt=""></div>

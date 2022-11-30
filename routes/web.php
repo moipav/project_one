@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\PostController;
-use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +33,13 @@ use Illuminate\Support\Facades\Route;
 }
 
 Route::controller(PostController::class)->group(function () {
-    Route::get('/posts/all', 'getAllPosts')->name('show.all.posts');
+    Route::get('/posts', 'getAllPosts')->name('all.posts');
+    Route::get('/posts/add', 'addPostPage')->name('add.post');
+    Route::post('/posts/add', 'addPost');
+    Route::get('/posts/show/{id}', 'showOnePost');
+    Route::get('/posts/edit/{id}', 'showEditPostPage');
+    Route::post('/posts/edit/{id}', 'editPost')->name('edit.post');
+    Route::get('posts/delete/{id}', 'deletePost');
 });
 
 
