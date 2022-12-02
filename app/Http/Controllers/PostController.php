@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -20,12 +21,12 @@ class PostController extends Controller
         'content'=>'required|min:10'
     ];
 
-    public function addPostPage()
+    public function addPostPage(): Factory|View|Application
     {
         return view('posts/add');
     }
 
-    public function addPost(Request $request)
+    public function addPost(Request $request): Redirector|Application|RedirectResponse
     {
         $request->validate($this->validate_rules);
         // Валидация запроса ...
@@ -46,13 +47,15 @@ class PostController extends Controller
     }
     public function getAllPosts(): Factory|View|Application
     {
-        $posts = Post::paginate(5);
+        collect($posts = DB::table('posts')->select('*')->orderByDesc('id')->paginate(5));
+//        $posts = Post::paginate(5);
         return view('posts/all', ['posts' => $posts]);
     }
 
-    public function showOnePost(int $id): Factory|View|Application
+    public function showOnePost(int $id)//: Factory|View|Application
     {
         $post = Post::where('id', $id)->get()->first();
+        dd($post);
         return view('posts/one', ['post' => $post]);
     }
 
@@ -65,7 +68,7 @@ class PostController extends Controller
     /**
      * @throws ValidationException
      */
-    public function editPost(Request $request, int $id)
+    public function editPost(Request $request, int $id): Redirector|Application|RedirectResponse
     {
 
         $validated = $request->validate($this->validate_rules);
