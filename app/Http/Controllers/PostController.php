@@ -55,7 +55,6 @@ class PostController extends Controller
     public function showOnePost(int $id)//: Factory|View|Application
     {
         $post = Post::where('id', $id)->get()->first();
-        dd($post);
         return view('posts/one', ['post' => $post]);
     }
 
@@ -79,7 +78,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $title;
         $post->slug = $slug;
-        $post->content = $request->content;
+        $post->content = $request->content;// rename property
         $post->save();
         return redirect(route('all.posts'));
     }
